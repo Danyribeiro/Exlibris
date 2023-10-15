@@ -1,0 +1,77 @@
+{% extends "model-page.html" %}
+
+{% block content %}
+ <h1>Catalogação</h1>
+<a href=" {% url "catalog:catalog-create" %}">
+  <button type="button" class="btn btn-success" style="float: right; margin-bottom: 5px;">Adicionar</button>
+</a>
+ 
+<form>
+    <div class="form-group mb-2">
+      <input class="form-control" type="text" name="title" placeholder="Pesquisar...">
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+<table class="table mt-4">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Título</th>
+      <th scope="col">Autor</th>
+      <th scope="col">Classificação</th>
+      <th scope="col"></th>
+      </tr>
+  </thead>
+  <tbody>
+    {% for book in book_list %}
+   <tr>
+    <td>{{book.id}}</td>
+    <td><a href="{{ book.get_absolute_url }}">{{book.title}}</a></td>
+    <td>{{book.author}}</td>
+    <td>{{book.classification}}</td>
+      <form method="post" action="{{book.get_delete_url}}">{% csrf_token %}
+        <td><button type="submit" class="btn btn-danger">Excluir</button></td>
+    </form>
+  </tr>
+  {% endfor %}
+   
+  </tbody> 
+</table>
+
+
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number}}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      {% endif %}
+
+        {% for object in page_obj.paginator.page_range %}
+        <li class="page-item"><a class="page-link" href="?page={{ forloop.counter}}">{{ forloop.counter}}</a></li>
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.next_page_number}}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+        {% endif %}
+
+      </ul>
+        
+{% endblock %}
