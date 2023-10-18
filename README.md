@@ -1,5 +1,8 @@
-# Exlibris: Sistema de Gerenciamento de Acervo para Bibliotecas Particulares
+
+# Projeto Ex-líbris
 Trata-se da elaboração de um CRUD de um Sistema de Gerenciamento de Acervo Bibliográfico, utilizando como técnologias: Python, Django e Bootstrap.
+
+![image](https://github.com/Danyribeiro/Exlibris/assets/47981348/0f2d9753-bd53-4bd3-bdcd-8bcd64a732f9)
 
 ## Comandos utilizados na aplicação
 ### Instalar as dependências
@@ -14,7 +17,11 @@ python manage.py createsuperuser
 ### Startar aplicação
 python manage.py runserver
 
-![image](https://github.com/Danyribeiro/Exlibris/assets/47981348/98fbb0f8-091d-47fe-aa46-52f703e8c5ef)
+
+
+
+
+
 
 
 
